@@ -4,6 +4,8 @@
  */
 package es.medac;
 
+import es.medac.users.Usuario;
+
 /**
  *
  * @author Daniel Ojados
