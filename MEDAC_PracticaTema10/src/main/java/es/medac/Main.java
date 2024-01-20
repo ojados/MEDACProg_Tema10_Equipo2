@@ -6,6 +6,8 @@ package es.medac;
 
 import es.medac.users.Usuario;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Daniel Ojados
