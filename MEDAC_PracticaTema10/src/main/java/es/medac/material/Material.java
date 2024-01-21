@@ -14,4 +14,6 @@ public abstract class Material implements Prestable {
         this.author = author;
         this.yearPublication = yearPublication;
     }
+
+    // TODO You must look the class diagram in youtrack and make getters and setters
 }
