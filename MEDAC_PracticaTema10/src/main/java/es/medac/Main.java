@@ -4,6 +4,7 @@
  */
 package es.medac;
 
+import es.medac.users.Estudiante;
 import es.medac.users.Usuario;
 
 import java.time.LocalDate;
