@@ -39,7 +39,7 @@ public abstract class Usuario {
      * @param lastName the last name of the user
      * @param id the ID of the user
      */
-    public Usuario(String firstName, String lastName, String id) {
+    protected Usuario(String firstName, String lastName, String id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
