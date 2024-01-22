@@ -104,5 +104,5 @@ public abstract class Usuario {
      * by any class that extends {@code Usuario}. It is
      * intended to display specific information about the user.
      */
-    abstract void mostrarInformacionEspecifica();
+    public abstract void mostrarInformacionEspecifica();
 }
