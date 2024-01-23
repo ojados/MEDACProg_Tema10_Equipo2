@@ -20,4 +20,4 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Build with Ant
-      run: ant -noinput -buildfile build.xml
+      run: ant -noinput -buildfile MEDAC_PracticaTema10/build.xml
