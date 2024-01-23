@@ -6,7 +6,7 @@ import java.util.logging.Logger;
  * The {@code Profesor} class represents a teacher user in the library system.
  *
  * This class extends the {@code Usuario} class, inheriting its properties and methods.
- * Additional properties specific to a teacher user, such as the degree, are also defined.
+ * Additional properties specific to a teacher user, such as the department, are also defined.
  * It provides methods to get and set the department, and to display specific information about the teacher.
  *
  * <p>Example usage:</p>
