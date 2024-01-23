@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import es.medac.material.Material;
 
 
-public interface biblioteca {
+public interface IfBiblioteca {
     /**
      * Metodo prestar material que incluye un Array con Usuario y LocalDate
       */
