@@ -3,15 +3,15 @@ package es.medac.users;
 import java.util.logging.Logger;
 
 /**
- * The {@code Profesor} class represents a student user in the library system.
+ * The {@code Profesor} class represents a teacher user in the library system.
  *
  * This class extends the {@code Usuario} class, inheriting its properties and methods.
- * Additional properties specific to a student user, such as the degree, are also defined.
- * It provides methods to get and set the degree, and to display specific information about the student.
+ * Additional properties specific to a teacher user, such as the degree, are also defined.
+ * It provides methods to get and set the department, and to display specific information about the teacher.
  *
  * <p>Example usage:</p>
  * <blockquote><pre>
- *     Profesor profesor = new Profesor("John", "Doe", "123", "Computer Science");
+ *     Profesor profesor = new Profesor("John", "Doe", "123", "English department");
  *     profesor.mostrarInformacionEspecifica();
  * </pre></blockquote>
  *
@@ -64,7 +64,7 @@ public class Profesor extends Usuario {
      * @param firstName the first name of the teacher, a {@code String}
      * @param lastName the last name of the teacher, a {@code String}
      * @param id the ID of the teacher, a {@code String}
-     * @param department the degree of the teacher, a {@code String}
+     * @param department the department of the teacher, a {@code String}
      *
      * @see Usuario#Usuario(String firstName, String lastName, String id)
      */
