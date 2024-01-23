@@ -45,7 +45,7 @@ public class Estudiante extends Usuario {
      * that represents the degree that the student is studying.
      *
      * @see #getDegree()
-     * @see #setDegree(String)
+     * @see #setDegree(String degree)
      */
     private String degree;
 
