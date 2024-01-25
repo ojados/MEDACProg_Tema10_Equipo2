@@ -57,21 +57,17 @@ public class Prestamo {
 
     public void registrarPrestamo() {
 
-        // TODO Complete the instruction
-        if (material == null || !material.isEmpty()) {
-            LOGGER.fine("El material se ha prestado correctamente.");
-        } else {
-            LOGGER.warning("El material no se ha prestado correctamente.");
-        }
+        setMaterial(material);
+        setUser(user);
+        setLoanDate(loanDate);
+        setReturnDate(returnDate);
     }
 
     public void registrarDevolucion() {
 
-        // TODO Complete the instruction
-        if (material == null || !material.isEmpty()) {
-            LOGGER.fine("El material se ha devuelto correctamente.");
-        } else {
-            LOGGER.warning("El material no se ha devuelto correctamente.");
-        }
+        setMaterial(material);
+        setUser(user);
+        setLoanDate(loanDate);
+        setReturnDate(returnDate);
     }
 }
