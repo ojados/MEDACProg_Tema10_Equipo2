@@ -5,7 +5,9 @@
  * @version 1.0
  */
 package es.medac.material;
-import java.time.LocalDate;
+
+import es.medac.library.Biblioteca;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,6 +42,10 @@ public class Libro extends Material {
         return numPages;
     }
 
+    public void setNumPages(int numPages) {
+        this.numPages = numPages;
+    }
+
     public boolean isBorrowed() {
         return borrowed;
     }
@@ -48,15 +54,13 @@ public class Libro extends Material {
         this.borrowed = borrowed;
     }
 
-    public void setNumPages(int numPages) {
-        this.numPages = numPages;
-    }
-
     @Override
     public void prestar() {
         if (isBorrowed()) {
             LOGGER.log(Level.WARNING, "El libro ya está prestado");
         } else {
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "{0}" + Biblioteca.ANSI_RESET, this);
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "Préstamo realizado." + Biblioteca.ANSI_RESET);
             borrowed = true;
         }
     }
@@ -66,6 +70,8 @@ public class Libro extends Material {
         if (!isBorrowed()) {
             LOGGER.log(Level.WARNING, "El libro no está prestado");
         } else {
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "{0}" + Biblioteca.ANSI_RESET, this);
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "Devolución realizada." + Biblioteca.ANSI_RESET);
             borrowed = false;
         }
     }
@@ -83,13 +89,12 @@ public class Libro extends Material {
 
     @Override
     public String toString() {
-        return "Libro{" +
-                "isbn='" + getIsbn() + '\'' +
-                ", title='" + getTitle() + '\'' +
-                ", author='" + getAuthor() + '\'' +
-                ", yearPublication=" + getYearPublication() +
-                ", numPages=" + numPages +
-                ", borrowed=" + borrowed +
-                '}';
-}
+        return "Libro\n" +
+                "\tISBN: " + getIsbn() + "\n" +
+                "\tTítulo: " + getTitle() + "\n" +
+                "\tAutor: " + getAuthor() + "\n" +
+                "\tAño de publicación: " + getYearPublication() + "\n" +
+                "\tNúmero de páginas: " + getNumPages() + "\n" +
+                "\tPrestado: " + (isBorrowed() ? "Sí" : "No") + "\n";
+    }
 }

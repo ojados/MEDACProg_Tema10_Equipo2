@@ -1,5 +1,7 @@
 package es.medac.material;
 
+import es.medac.library.Biblioteca;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,6 +35,8 @@ public class Revista extends Material {
         if (isBorrowed()) {
             LOGGER.log(Level.WARNING, "El libro ya está prestado");
         } else {
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "{0}" + Biblioteca.ANSI_RESET, this);
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "Préstamo realizado." + Biblioteca.ANSI_RESET);
             borrowed = true;
         }
     }
@@ -42,6 +46,8 @@ public class Revista extends Material {
         if (!isBorrowed()) {
             LOGGER.log(Level.WARNING, "El libro no está prestado");
         } else {
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "{0}" + Biblioteca.ANSI_RESET, this);
+            LOGGER.log(Level.INFO, Biblioteca.ANSI_CYAN + "Devolución realizada." + Biblioteca.ANSI_RESET);
             borrowed = false;
         }
     }
@@ -53,14 +59,13 @@ public class Revista extends Material {
 
     @Override
     public String toString() {
-        return "Revista{" +
-                "isbn='" + getIsbn() + '\'' +
-                ", title='" + getTitle() + '\'' +
-                ", author='" + getAuthor() + '\'' +
-                ", yearPublication=" + getYearPublication() +
-                ", numArticulos=" + numArticulos +
-                ", borrowed=" + borrowed +
-                '}';
+        return "Revista\n" +
+                "\tISBN: " + getIsbn() + "\n" +
+                "\tTítulo: " + getTitle() + "\n" +
+                "\tAutor: " + getAuthor() + "\n" +
+                "\tAño de publicación: " + getYearPublication() + "\n" +
+                "\tNúmero de artículos: " + getNumArticulos() + "\n" +
+                "\tPrestado: " + (isBorrowed() ? "Sí" : "No") + "\n";
     }
 }
 
