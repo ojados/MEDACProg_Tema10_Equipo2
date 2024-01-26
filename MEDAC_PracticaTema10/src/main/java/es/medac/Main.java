@@ -23,6 +23,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         // Crear instancias de libros, revistas, usuarios y la biblioteca
         Libro libro = new Libro("123456", "Java Programming", "John Doe", 2020, 500);
         Revista revista = new Revista("789012", "Science Journal", "Jane Smith", 2021, 30);
