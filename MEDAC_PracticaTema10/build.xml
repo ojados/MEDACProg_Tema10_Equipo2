@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<project name="HelloWorld" basedir="." default="main">
+
+    <property name="src.dir"     value="src"/>
+
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+
+    <property name="main-class"  value="oata.HelloWorld"/>
+
+
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+    </target>
+
+    <target name="clean-build" depends="clean,jar"/>
+
+    <target name="main" depends="clean,run"/>
+
+</project>
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
 <!-- You may freely edit this file. See commented blocks below for -->
 <!-- some examples of how to customize the build. -->
 <!-- (If you delete it and reopen the project it will be recreated.) -->
@@ -7,9 +47,9 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="MEDAC_PracticaTema10" default="default" basedir=".">
-    <description>Builds, tests, and runs the project MEDAC_PracticaTema10.</description>
-    <import file="nbproject/build-impl.xml"/>
+<!-- <project name="MEDAC_PracticaTema10" default="default" basedir="."> -->
+    <!-- <description>Builds, tests, and runs the project MEDAC_PracticaTema10.</description> -->
+    <!-- <import file="nbproject/build-impl.xml"/> -->
     <!--
 
     There exist several targets which are by default empty and which can be 
@@ -70,4 +110,4 @@
     nbproject/build-impl.xml file. 
 
     -->
-</project>
+<!-- </project> -->
