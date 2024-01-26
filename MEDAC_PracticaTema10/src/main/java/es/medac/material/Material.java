@@ -1,7 +1,5 @@
 package es.medac.material;
 
-import java.time.LocalDate;
-
 /**
  * This is the Material class which is an abstract class that implements
  * the Prestable interface. It represents a generic material with common
@@ -13,7 +11,7 @@ public abstract class Material implements Prestable {
     private String isbn;
     private String title;
     private String author;
-    private LocalDate yearPublication;
+    private int yearPublication;
 
 
     /**
@@ -23,7 +21,7 @@ public abstract class Material implements Prestable {
      * @param author Author of the material
      * @param yearPublication Year of publication of the material
      */
-    protected Material(String isbn, String title, String author, LocalDate yearPublication) {
+    protected Material(String isbn, String title, String author, int yearPublication) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -82,7 +80,7 @@ public abstract class Material implements Prestable {
      * Getter for the year of publication of the material.
      * @return Year of publication of the material
      */
-    public LocalDate getYearPublication() {
+    public int getYearPublication() {
         return yearPublication;
     }
 
@@ -90,7 +88,7 @@ public abstract class Material implements Prestable {
      * Setter for the year of publication of the material.
      * @param yearPublication Year of publication of the material
      */
-    public void setYearPublication(LocalDate yearPublication) {
+    public void setYearPublication(int yearPublication) {
         this.yearPublication = yearPublication;
     }
 

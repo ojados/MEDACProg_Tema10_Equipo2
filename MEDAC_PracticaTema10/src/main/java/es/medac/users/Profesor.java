@@ -128,4 +128,14 @@ public class Profesor extends Usuario {
         LOGGER.info("ID: " + getId());
         LOGGER.info("Departamento: " + getDepartment());
     }
+
+    @Override
+    public String toString() {
+        return "Profesor{" +
+                "firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", id='" + getId() + '\'' +
+                ", department='" + department + '\'' +
+                '}';
+    }
 }

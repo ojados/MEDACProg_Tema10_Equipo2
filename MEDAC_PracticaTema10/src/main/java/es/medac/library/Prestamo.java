@@ -11,23 +11,29 @@ public class Prestamo {
 
     private static final Logger LOGGER = Logger.getLogger(Prestamo.class.getName());
 
-    private ArrayList<Material> material;
+    private Material material;
     private Usuario user;
     private LocalDate loanDate;
     private LocalDate returnDate;
 
-    public Prestamo(ArrayList<Material> material, Usuario user, LocalDate loanDate, LocalDate returnDate) {
+    public Prestamo(Material material, Usuario user, LocalDate loanDate, LocalDate returnDate) {
         this.material = material;
         this.user = user;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
     }
 
-    public ArrayList<Material> getMaterial() {
+    public Prestamo(Material material, Usuario user, LocalDate loanDate) {
+        this.material = material;
+        this.user = user;
+        this.loanDate = loanDate;
+    }
+
+    public Material getMaterial() {
         return material;
     }
 
-    public void setMaterial(ArrayList<Material> material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
 
@@ -57,17 +63,23 @@ public class Prestamo {
 
     public void registrarPrestamo() {
 
-        setMaterial(material);
-        setUser(user);
-        setLoanDate(loanDate);
-        setReturnDate(returnDate);
+        material.prestar();
+        loanDate = getLoanDate();
     }
 
     public void registrarDevolucion() {
 
-        setMaterial(material);
-        setUser(user);
-        setLoanDate(loanDate);
-        setReturnDate(returnDate);
+        material.devolver();
+        returnDate = getReturnDate();
+    }
+
+    @Override
+    public String toString() {
+        return "Prestamo{" +
+                "material=" + material +
+                ", user=" + user +
+                ", loanDate=" + loanDate +
+                ", returnDate=" + returnDate +
+                '}';
     }
 }

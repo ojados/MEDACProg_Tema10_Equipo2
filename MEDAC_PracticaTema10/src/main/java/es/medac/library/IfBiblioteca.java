@@ -16,9 +16,9 @@ import java.util.ArrayList;
  */
 public interface IfBiblioteca {
 
-    void prestarMaterial(ArrayList<Material> material, Usuario user, LocalDate date);
+    void prestarMaterial(Material material, Usuario user, LocalDate date);
 
-    void devolverMaterial(ArrayList<Material> material, LocalDate date);
+    void devolverMaterial(Material material, LocalDate date);
 
-    void mostrarInformacionPrestamo();
+    void mostrarInformacionPrestamos();
 }

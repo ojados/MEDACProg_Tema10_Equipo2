@@ -6,24 +6,68 @@
  */
 package es.medac.material;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * The Libro class represents a book in the library system.
+ * It extends the Material abstract class and implements the Prestable interface.
+ *
+ * <p>Each Libro object has an ISBN, title, author, year of publication, number of pages, and a borrowed status.</p>
+ *
+ * <p>This class provides methods to show specific information about a book, check if the book is borrowed,
+ * set and get the number of pages, lend the book, return the book, and a toString method to represent the state of the book.</p>
+ *
+ * @author Anouar Mais
+ * @version 1.0
+ * @see Material
+ * @see Prestable
+ */
 public class Libro extends Material {
 
-    //Atributos de la clase Libro
+    private static final Logger LOGGER = Logger.getLogger(Libro.class.getName());
+
     private int numPages;
-    private  boolean borrowed = false;
+    private boolean borrowed;
 
-    /**
-     * Constructor de la clase libros con parametros
-     * @param ISBN The identification number of the book.
-     * @param titulo The title of the book.
-     * @param autor The author of the book.
-     * @param anioDePublicacion The year the book was published.
-     * @param numPages The number of pages in the book.
-     */
-    public Libro(String ISBN, String titulo, String autor, LocalDate anioDePublicacion , int numPages) {
-        super(ISBN, titulo, autor, anioDePublicacion );
+    public Libro(String isbn, String title, String author, int yearPublication, int numPages) {
+        super(isbn, title, author, yearPublication);
+        this.numPages = numPages;
+        this.borrowed = false;
+    }
 
+    public int getNumPages() {
+        return numPages;
+    }
+
+    public boolean isBorrowed() {
+        return borrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        this.borrowed = borrowed;
+    }
+
+    public void setNumPages(int numPages) {
+        this.numPages = numPages;
+    }
+
+    @Override
+    public void prestar() {
+        if (isBorrowed()) {
+            LOGGER.log(Level.WARNING, "El libro ya está prestado");
+        } else {
+            borrowed = true;
+        }
+    }
+
+    @Override
+    public void devolver() {
+        if (!isBorrowed()) {
+            LOGGER.log(Level.WARNING, "El libro no está prestado");
+        } else {
+            borrowed = false;
+        }
     }
 
     /**
@@ -36,52 +80,7 @@ public class Libro extends Material {
         System.out.println("Autor: " + getAuthor());
         System.out.println("ISBN: " + getIsbn());
     }
-    /**
-     * Returns the loan status of the book.
-     *
-     * @return true if the book is checked out, false if it is not checked out.
-     */
-    public boolean isBorrowed() {
-        return borrowed;
-    }
-    /**
-     * Set the number of pages in the book.
-     *
-     * @param numPages The number of pages to set.
-     */
-    public void setNumPages(int numPages) {
-        this.numPages = numPages;
-    }
-    /**
-     * Gets the number of pages of the book.
-     *
-     * @return The number of pages in the book.
-     */
 
-    public int getNumPages() {
-        return numPages;
-    }
-    /**
-     * Implementation of the Prestable interface method to lend the book.
-     */
-
-    @Override
-    public void prestar() {
-    borrowed = true;
-    }
-    /**
-     * Implementation of the Prestable interface method to return the book.
-     */
-    @Override
-    public void devolver() {
-        borrowed = false;
-
-    }
-    /**
-     * String format representation of the book information.
-     *
-     * @return A string representing the state of the workbook.
-     */
     @Override
     public String toString() {
         return "Libro{" +

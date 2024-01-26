@@ -127,4 +127,14 @@ public class Estudiante extends Usuario {
         LOGGER.info("ID: " + getId());
         LOGGER.info("Grado: " + getDegree());
     }
+
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", id='" + getId() + '\'' +
+                ", degree='" + degree + '\'' +
+                '}';
+    }
 }

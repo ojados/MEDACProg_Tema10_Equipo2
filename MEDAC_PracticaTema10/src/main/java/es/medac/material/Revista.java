@@ -1,23 +1,24 @@
 package es.medac.material;
 
-import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Revista extends Material {
 
-    boolean borrowed = false;
+    private static final Logger LOGGER = Logger.getLogger(Revista.class.getName());
 
-    int numArticulos;
+    private int numArticulos;
+    private boolean borrowed;
 
-    public Revista(String isbn, String titulo, String autor, LocalDate anioDePublicacion, boolean borrowed, int numArticulos) {
+    public Revista(String isbn, String titulo, String autor, int anioDePublicacion, int numArticulos) {
         super(isbn, titulo, autor, anioDePublicacion);
-        this.borrowed = borrowed;
         this.numArticulos = numArticulos;
+        this.borrowed = false;
     }
 
     public int getNumArticulos() {
         return numArticulos;
     }
-
 
     public void setNumArticulos(int numArticulos) {
         this.numArticulos = numArticulos;
@@ -28,28 +29,38 @@ public class Revista extends Material {
     }
 
     @Override
-    public String toString() {
-        return "Revista{" + "prestados=" + borrowed + ", numArticulos=" + numArticulos + ", ISBN=" + getIsbn() +
-                ", titulo='" + getTitle() + '\'' +
-                ", autor='" + getAuthor() + '\'' +
-                ", anioDePublicacion=" + getYearPublication() +
-                '}';
-    }
-
-    @Override
     public void prestar() {
-        borrowed = true;
+        if (isBorrowed()) {
+            LOGGER.log(Level.WARNING, "El libro ya está prestado");
+        } else {
+            borrowed = true;
+        }
     }
 
     @Override
     public void devolver() {
-        borrowed = false;
-
+        if (!isBorrowed()) {
+            LOGGER.log(Level.WARNING, "El libro no está prestado");
+        } else {
+            borrowed = false;
+        }
     }
 
     @Override
     public void mostrarInformacionEspecifica() {
+        System.out.println("Número de artículos: " + getNumArticulos());
+    }
 
+    @Override
+    public String toString() {
+        return "Revista{" +
+                "isbn='" + getIsbn() + '\'' +
+                ", title='" + getTitle() + '\'' +
+                ", author='" + getAuthor() + '\'' +
+                ", yearPublication=" + getYearPublication() +
+                ", numArticulos=" + numArticulos +
+                ", borrowed=" + borrowed +
+                '}';
     }
 }
 

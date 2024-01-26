@@ -4,6 +4,9 @@
  */
 package es.medac;
 
+import es.medac.library.Biblioteca;
+import es.medac.material.Libro;
+import es.medac.material.Revista;
 import es.medac.users.Estudiante;
 import es.medac.users.Profesor;
 import es.medac.users.Usuario;
