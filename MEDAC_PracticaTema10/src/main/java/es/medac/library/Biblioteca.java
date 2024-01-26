@@ -14,6 +14,15 @@ import java.util.logging.Logger;
 public class Biblioteca implements IfBiblioteca {
 
     private static final Logger LOGGER = Logger.getLogger(Biblioteca.class.getName());
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     /**
      * ArrayList de la clase Material
@@ -38,6 +47,7 @@ public class Biblioteca implements IfBiblioteca {
         this.material.add(prestamo.getMaterial());
         usuarios.add(prestamo.getUser());
         prestamos.add(prestamo);
+
         prestamo.setLoanDate(date);
         prestamo.registrarPrestamo();
     }
@@ -49,7 +59,7 @@ public class Biblioteca implements IfBiblioteca {
                 prestamos.remove(prestamo);
                 prestamo.setReturnDate(date);
                 prestamo.registrarDevolucion();
-                LOGGER.log(Level.FINE, "Devolución realizada.");
+                LOGGER.log(Level.FINE, ANSI_GREEN + "Devolución realizada." + ANSI_GREEN);
                 return;
             }
         }
@@ -60,6 +70,6 @@ public class Biblioteca implements IfBiblioteca {
     @Override
     public void mostrarInformacionPrestamos() {
 
-        LOGGER.log(Level.INFO, "Prestamos: {0}\n" + "Usuario {1}\n", new Object[]{prestamos, usuarios});
+        LOGGER.log(Level.INFO, ANSI_GREEN + "Prestamos: {0}\n" + "Usuario {1}\n" + ANSI_RESET, new Object[]{prestamos, usuarios});
     }
 }
