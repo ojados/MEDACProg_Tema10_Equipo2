@@ -4,12 +4,8 @@ import es.medac.material.Material;
 import es.medac.users.Usuario;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class Prestamo {
-
-    private static final Logger LOGGER = Logger.getLogger(Prestamo.class.getName());
 
     private Material material;
     private Usuario user;
@@ -75,11 +71,11 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Prestamo{" +
-                "material=" + material +
-                ", user=" + user +
-                ", loanDate=" + loanDate +
-                ", returnDate=" + returnDate +
+        return "Prestamo{\n" +
+                "material=" + material + "\n" +
+                ", user=" + user + "\n" +
+                ", loanDate=" + loanDate + "\n" +
+                ", returnDate=" + returnDate + "\n" +
                 '}';
     }
 }
