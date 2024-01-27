@@ -6,6 +6,8 @@
  */
 package es.medac.material;
 
+import es.medac.miscellany.Colors;
+
 import java.util.logging.Level;
 
 import static es.medac.miscellany.LogLibrary.LOGGER;
@@ -28,6 +30,7 @@ import static es.medac.miscellany.LogLibrary.LOGGER;
  *
  * @see Material
  * @see Prestable
+ * @see Revista
  *
  * @author Anouar Mais (Anouarmais)
  *
@@ -130,10 +133,15 @@ public class Libro extends Material {
      */
     @Override
     public void mostrarInformacionEspecifica() {
-        LOGGER.log(Level.INFO, "Muestrando informacion especifica: ");
-        LOGGER.log(Level.INFO, "Título: {0}", getTitle());
-        LOGGER.log(Level.INFO, "Autor: {0}", getAuthor());
-        LOGGER.log(Level.INFO, "ISBN: {0}", getIsbn());
+        LOGGER.log(Level.INFO, Colors.ANSI_BLUE);
+        LOGGER.log(Level.INFO, "Mostrando información específica del libro:");
+        LOGGER.log(Level.INFO, "Título: {}", getTitle());
+        LOGGER.log(Level.INFO, "Autor: {}", getAuthor());
+        LOGGER.log(Level.INFO, "ISBN: {}", getIsbn());
+        LOGGER.log(Level.INFO, "Año de publicación: {}", getYearPublication());
+        LOGGER.log(Level.INFO, "Número de páginas: {}", getNumPages());
+        LOGGER.log(Level.INFO, "Prestado: {}", (isBorrowed() ? "Sí" : "No"));
+        LOGGER.log(Level.INFO, Colors.ANSI_RESET);
     }
 
     /**

@@ -1,25 +1,54 @@
 package es.medac.material;
 
 /**
- * This is the Material class which is an abstract class that implements
- * the Prestable interface. It represents a generic material with common
- * properties such as ISBN, title, author, and year of publication.
- * Specific types of materials should extend this class and implement the
- * abstract method mostrarInformacionEspecifica().
+ * The {@code Material} class is an abstract class that represents a generic
+ * material in the library system.
+ *
+ * <p>This class implements the {@code Prestable} interface and provides common
+ * properties for specific types of materials, such as ISBN, title, author, and
+ * year of publication. Specific types of materials should extend this class and
+ * implement the abstract method {@code mostrarInformacionEspecifica()}.</p>
+ *
+ * @since 1.0
+ *
+ * @see Prestable
+ * @see Libro
+ * @see Revista
+ *
+ * @author David Quiroja (19JuanDavid)
+ *
+ * @version 1.0
  */
 public abstract class Material implements Prestable {
-    private String isbn;
-    private String title;
-    private String author;
-    private int yearPublication;
-
 
     /**
-     * Constructor for the Material class.
-     * @param isbn ISBN of the material
-     * @param title Title of the material
-     * @param author Author of the material
-     * @param yearPublication Year of publication of the material
+     * The ISBN of the material.
+     */
+    private String isbn;
+
+    /**
+     * The title of the material.
+     */
+    private String title;
+
+    /**
+     * The author of the material.
+     */
+    private String author;
+
+    /**
+     * The year of publication of the material.
+     */
+    private int yearPublication;
+
+    /**
+     * Constructs a new material with the specified ISBN, title, author,
+     * and year of publication.
+     *
+     * @param isbn the ISBN of the material
+     * @param title the title of the material
+     * @param author the author of the material
+     * @param yearPublication the year of publication of the material
      */
     protected Material(String isbn, String title, String author, int yearPublication) {
         this.isbn = isbn;
@@ -29,72 +58,81 @@ public abstract class Material implements Prestable {
     }
 
     /**
-     * Getter for the ISBN of the material.
-     * @return ISBN of the material
+     * Returns the ISBN of the material.
+     *
+     * @return the ISBN of the material
      */
     public String getIsbn() {
         return isbn;
     }
 
     /**
-     * Setter for the ISBN of the material.
-     * @param isbn ISBN of the material
+     * Sets the ISBN of the material.
+     *
+     * @param isbn the new ISBN of the material
      */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
     /**
-     * Getter for the title of the material.
-     * @return Title of the material
+     * Returns the title of the material.
+     *
+     * @return the title of the material
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * Setter for the title of the material.
-     * @param title Title of the material
+     * Sets the title of the material.
+     *
+     * @param title the new title of the material
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * Getter for the author of the material.
-     * @return Author of the material
+     * Returns the author of the material.
+     *
+     * @return the author of the material
      */
     public String getAuthor() {
         return author;
     }
 
     /**
-     * Setter for the author of the material.
-     * @param author Author of the material
+     * Sets the author of the material.
+     *
+     * @param author the new author of the material
      */
     public void setAuthor(String author) {
         this.author = author;
     }
 
     /**
-     * Getter for the year of publication of the material.
-     * @return Year of publication of the material
+     * Returns the year of publication of the material.
+     *
+     * @return the year of publication of the material
      */
     public int getYearPublication() {
         return yearPublication;
     }
 
     /**
-     * Setter for the year of publication of the material.
-     * @param yearPublication Year of publication of the material
+     * Sets the year of publication of the material.
+     *
+     * @param yearPublication the new year of publication of the material
      */
     public void setYearPublication(int yearPublication) {
         this.yearPublication = yearPublication;
     }
 
     /**
-     * Abstract method to show specific information of the material.
-     * This method should be implemented by subclasses of Material.
+     * Shows specific information about the material.
+     *
+     * <p>This method should be overridden by subclasses to provide specific information about the material.</p>
      */
     public abstract void mostrarInformacionEspecifica();
 

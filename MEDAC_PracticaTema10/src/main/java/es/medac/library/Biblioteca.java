@@ -35,7 +35,7 @@ import static es.medac.miscellany.LogLibrary.LOGGER;
  * @author Daniel Romero (JDan)
  * @author Katerine Hidalgo (Katehlo0412)
  * @author Daniel Hernandez (dhernandeez13)
- * @author Alonso Jesus (Alonso01234)
+ * @author Alonso Jesus (Penguin)
  *
  * @version 1.1
  */
@@ -99,7 +99,8 @@ public class Biblioteca implements IfBiblioteca {
 
         prestamo.setLoanDate(date);
 
-        LOGGER.log(Level.INFO, Colors.ANSI_BLUE + "{}" + Colors.ANSI_RESET, prestamo);
+        prestamo.getMaterial().mostrarInformacionEspecifica();
+        prestamo.getUser().mostrarInformacionEspecifica();
         prestamo.registrarPrestamo();
 
         LOGGER.log(Level.INFO, Colors.ANSI_BLUE + "Préstamo realizado." + Colors.ANSI_RESET);
@@ -129,9 +130,8 @@ public class Biblioteca implements IfBiblioteca {
                 this.prestamos.remove(prestamo);
                 prestamo.setReturnDate(date);
 
-                String text = String.format("%s", prestamo);
-
-                LOGGER.log(Level.INFO, Colors.ANSI_BLUE + "{}" + Colors.ANSI_RESET, text);
+                prestamo.getMaterial().mostrarInformacionEspecifica();
+                prestamo.getUser().mostrarInformacionEspecifica();
                 prestamo.registrarDevolucion();
 
                 LOGGER.log(Level.INFO, Colors.ANSI_BLUE + "Devolución realizada." + Colors.ANSI_RESET);
