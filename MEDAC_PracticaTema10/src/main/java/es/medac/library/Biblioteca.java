@@ -13,8 +13,9 @@ import static es.medac.miscellany.LogLibrary.LOGGER;
 /**
  * The {@code Biblioteca} class represents a library in the system.
  *
- * <p>This class manages the materials and users in the library. It provides methods to add and remove materials,
- * register and unregister users, and check out and return materials.</p>
+ * <p>This class manages the materials and users in the library.
+ * It provides methods to add and remove materials, register and unregister
+ * users, and check out and return materials.</p>
  *
  * <p>Example usage:</p>
  * <blockquote><pre>
@@ -52,7 +53,8 @@ public class Biblioteca implements IfBiblioteca {
      * List of users in the library.
      *
      * <p>This list stores all the users that are registered in the library.
-     * Each user is represented by an instance of a class that extends the {@code Usuario} class.</p>
+     * Each user is represented by an instance of a class that extends the
+     * {@code Usuario} class.</p>
      */
     private final ArrayList<Usuario> usuarios;
 
