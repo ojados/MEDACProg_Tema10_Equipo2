@@ -1,5 +1,6 @@
 package es.medac.library;
 
+import es.medac.exceptions.PrestamoVencidoException;
 import es.medac.material.Material;
 import es.medac.users.Usuario;
 
@@ -49,6 +50,11 @@ public class Prestamo {
     private LocalDate returnDate;
 
     /**
+     * The limit date of the loan.
+     */
+    private LocalDate limitDate;
+
+    /**
      * Constructs a new loan with the specified material, user, loan date,
      * and return date.
      *
@@ -57,11 +63,12 @@ public class Prestamo {
      * @param loanDate the date of the loan
      * @param returnDate the return date of the loan
      */
-    public Prestamo(Material material, Usuario user, LocalDate loanDate, LocalDate returnDate) {
+    public Prestamo(Material material, Usuario user, LocalDate loanDate, LocalDate returnDate, LocalDate limitDate) {
         this.material = material;
         this.user = user;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
+        this.limitDate = limitDate;
     }
 
     /**
@@ -150,6 +157,24 @@ public class Prestamo {
     }
 
     /**
+     * Returns the limit date of the loan.
+     *
+     * @return the limit date of the loan
+     */
+    public LocalDate getLimitDate() {
+        return limitDate;
+    }
+
+    /**
+     * Sets the limit date of the loan.
+     *
+     * @param limitDate the new limit date of the loan
+     */
+    public void setLimitDate(LocalDate limitDate) {
+        this.limitDate = limitDate;
+    }
+
+    /**
      * Registers the loan of the material.
      *
      * <p>This method sets the loan date of the material and when the
@@ -158,11 +183,7 @@ public class Prestamo {
     public void registrarPrestamo() {
 
         material.prestar();
-        loanDate = getLoanDate();
-
-        if (returnDate == null) {
-            returnDate = LocalDate.now().plusMonths(1);
-        }
+        limitDate = loanDate.plusDays(5);
     }
 
     /**
@@ -170,10 +191,13 @@ public class Prestamo {
      *
      * <p>This method sets the return date of the material.</p>
      */
-    public void registrarDevolucion() {
+    public void registrarDevolucion() throws PrestamoVencidoException {
 
         material.devolver();
-        returnDate = getReturnDate();
+
+        if (getReturnDate().isAfter(getLimitDate())) {
+            throw new PrestamoVencidoException("El préstamo ha vencido.");
+        }
     }
 
     /**
@@ -187,6 +211,7 @@ public class Prestamo {
                 "\tMaterial: " + material + "\n" +
                 "\tUsuario: " + user + "\n" +
                 "\tFecha de préstamo: " + loanDate + "\n" +
-                "\tFecha de devolución: " + returnDate + "\n";
+                "\tFecha de devolución: " + returnDate + "\n" +
+                "\tFecha límite: " + limitDate + "\n";
     }
 }

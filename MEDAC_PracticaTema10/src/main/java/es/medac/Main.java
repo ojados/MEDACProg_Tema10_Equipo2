@@ -14,7 +14,6 @@ import es.medac.users.Usuario;
 import java.time.LocalDate;
 
 /**
- *
  * @author Daniel Ojados
  */
 public class Main {
@@ -39,9 +38,10 @@ public class Main {
 
         biblioteca.mostrarInformacionPrestamos();
 
-        biblioteca.devolverMaterial(libro, LocalDate.now());
+        biblioteca.devolverMaterial(libro, LocalDate.now().plusDays(6));
 
         biblioteca.mostrarInformacionPrestamos();
+
     }
-    
+
 }
