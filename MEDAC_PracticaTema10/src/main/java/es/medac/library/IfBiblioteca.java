@@ -1,6 +1,5 @@
 package es.medac.library;
 
-import es.medac.exceptions.PrestamoVencidoException;
 import es.medac.material.Material;
 import es.medac.users.Usuario;
 
@@ -36,7 +35,7 @@ public interface IfBiblioteca {
      * @param material The material to be returned.
      * @param date The date when the material is being returned.
      */
-    void devolverMaterial(Material material, LocalDate date) throws PrestamoVencidoException;
+    void devolverMaterial(Material material, LocalDate date);
 
     /**
      * This method is used to display information about the loans.
