@@ -1,5 +1,6 @@
 package es.medac.library;
 
+import es.medac.exceptions.PrestamoVencidoException;
 import es.medac.material.Material;
 import es.medac.users.Usuario;
 
@@ -170,7 +171,7 @@ public class Prestamo {
      *
      * <p>This method sets the return date of the material.</p>
      */
-    public void registrarDevolucion() {
+    public void registrarDevolucion() throws PrestamoVencidoException {
 
         material.devolver();
         returnDate = getReturnDate();
