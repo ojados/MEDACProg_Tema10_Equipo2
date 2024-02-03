@@ -4,7 +4,6 @@
  */
 package es.medac;
 
-import es.medac.exceptions.PrestamoVencidoException;
 import es.medac.library.Biblioteca;
 import es.medac.material.Libro;
 import es.medac.material.Revista;
@@ -15,7 +14,6 @@ import es.medac.users.Usuario;
 import java.time.LocalDate;
 
 /**
- *
  * @author Daniel Ojados
  */
 public class Main {
@@ -40,13 +38,10 @@ public class Main {
 
         biblioteca.mostrarInformacionPrestamos();
 
-        try {
-            biblioteca.devolverMaterial(libro, LocalDate.now());
-        } catch (PrestamoVencidoException e) {
-            e.getMessage();
-        }
+        biblioteca.devolverMaterial(libro, LocalDate.now().plusDays(6));
 
         biblioteca.mostrarInformacionPrestamos();
+
     }
-    
+
 }
