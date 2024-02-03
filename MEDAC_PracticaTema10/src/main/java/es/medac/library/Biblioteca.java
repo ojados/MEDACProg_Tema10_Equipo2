@@ -1,5 +1,6 @@
 package es.medac.library;
 
+import es.medac.exceptions.PrestamoVencidoException;
 import es.medac.material.Material;
 import es.medac.miscellany.Colors;
 import es.medac.users.Usuario;
@@ -25,19 +26,16 @@ import static es.medac.miscellany.LogLibrary.LOGGER;
  *     biblioteca.checkOutMaterial("ISBN", "123");
  * </pre></blockquote>
  *
- * @since 1.0
- *
- * @see IfBiblioteca
- * @see Prestamo
- * @see Usuario
- * @see Material
- *
  * @author Daniel Romero (JDan)
  * @author Katerine Hidalgo (Katehlo0412)
  * @author Daniel Hernandez (dhernandeez13)
  * @author Alonso Jesus (Penguin)
- *
  * @version 1.1
+ * @see IfBiblioteca
+ * @see Prestamo
+ * @see Usuario
+ * @see Material
+ * @since 1.0
  */
 public class Biblioteca implements IfBiblioteca {
 
@@ -83,9 +81,9 @@ public class Biblioteca implements IfBiblioteca {
      *
      * @param material the material to be lent, an instance of a class that
      *                 extends the {@code Material} class
-     * @param user the user to lend the material to, an instance of a class
-     *             that extends the {@code Usuario} class
-     * @param date the date of the loan, a {@code LocalDate}
+     * @param user     the user to lend the material to, an instance of a class
+     *                 that extends the {@code Usuario} class
+     * @param date     the date of the loan, a {@code LocalDate}
      */
     @Override
     public void prestarMaterial(Material material, Usuario user, LocalDate date) {
@@ -117,10 +115,10 @@ public class Biblioteca implements IfBiblioteca {
      *
      * @param material the material to be returned, an instance of a class
      *                 that extends the {@code Material} class
-     * @param date the date of the return, a {@code LocalDate}
+     * @param date     the date of the return, a {@code LocalDate}
      */
     @Override
-    public void devolverMaterial(Material material, LocalDate date) {
+    public void devolverMaterial(Material material, LocalDate date) throws PrestamoVencidoException {
 
         LOGGER.info("-------- DEVOLUCION --------");
         for (Prestamo prestamo : prestamos) {
@@ -132,12 +130,22 @@ public class Biblioteca implements IfBiblioteca {
 
                 prestamo.getMaterial().mostrarInformacionEspecifica();
                 prestamo.getUser().mostrarInformacionEspecifica();
-                prestamo.registrarDevolucion();
+
+                if (prestamo.getReturnDate().isAfter(LocalDate.now())) {
+                    prestamo.registrarDevolucion();
+                    throw new PrestamoVencidoException("Has devuelto el material más tarde de la fecha que " +
+                            "  corresponde . Tienes una penalización de 10 dias.");
+
+                } else {
+                            prestamo.registrarDevolucion();
+                    LOGGER.log(Level.INFO, Colors.ANSI_GREEN + "Has devuelto el material en " +
+                            "su fecha correspondiente , puede tomar prestado otro material." + Colors.ANSI_RESET);
+                }
 
                 LOGGER.log(Level.INFO, Colors.ANSI_BLUE + "Devolución realizada." + Colors.ANSI_RESET);
             } else {
 
-                    LOGGER.log(Level.WARNING, "El material no está en préstamo.");
+                LOGGER.log(Level.WARNING, "El material no está en préstamo.");
             }
         }
 
