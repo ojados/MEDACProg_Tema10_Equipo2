@@ -118,33 +118,30 @@ public class Biblioteca implements IfBiblioteca {
      * @param date     the date of the return, a {@code LocalDate}
      */
     @Override
-    public void devolverMaterial(Material material, LocalDate date) throws PrestamoVencidoException {
+    public void devolverMaterial(Material material, LocalDate date) {
 
         LOGGER.info("-------- DEVOLUCION --------");
         for (Prestamo prestamo : prestamos) {
 
-            if (prestamo.getMaterial().equals(material)) {
+            if (prestamo.getMaterial().getIsbn().equals(material.getIsbn())) {
 
-                this.prestamos.remove(prestamo);
-                prestamo.setReturnDate(date);
+                try {
 
-                prestamo.getMaterial().mostrarInformacionEspecifica();
-                prestamo.getUser().mostrarInformacionEspecifica();
+                    this.prestamos.remove(prestamo);
+                    prestamo.getMaterial().mostrarInformacionEspecifica();
+                    prestamo.getUser().mostrarInformacionEspecifica();
 
-                if (prestamo.getReturnDate().isAfter(LocalDate.now())) {
+                    prestamo.setReturnDate(date);
                     prestamo.registrarDevolucion();
-                    throw new PrestamoVencidoException("Has devuelto el material más tarde de la fecha que " +
-                            "  corresponde . Tienes una penalización de 10 dias.");
+                } catch (PrestamoVencidoException e) {
 
-                } else {
-                            prestamo.registrarDevolucion();
-                    LOGGER.log(Level.INFO, Colors.ANSI_GREEN + "Has devuelto el material en " +
-                            "su fecha correspondiente , puede tomar prestado otro material." + Colors.ANSI_RESET);
+                    LOGGER.log(Level.WARNING, e.getMessage());
                 }
 
                 LOGGER.log(Level.INFO, Colors.ANSI_BLUE + "Devolución realizada." + Colors.ANSI_RESET);
-            } else {
 
+                return;
+            } else {
                 LOGGER.log(Level.WARNING, "El material no está en préstamo.");
             }
         }
