@@ -4,6 +4,7 @@
  */
 package es.medac;
 
+import es.medac.exceptions.PrestamoVencidoException;
 import es.medac.library.Biblioteca;
 import es.medac.material.Libro;
 import es.medac.material.Revista;
@@ -39,7 +40,11 @@ public class Main {
 
         biblioteca.mostrarInformacionPrestamos();
 
-        biblioteca.devolverMaterial(libro, LocalDate.now());
+        try {
+            biblioteca.devolverMaterial(libro, LocalDate.now());
+        } catch (PrestamoVencidoException e) {
+            e.getMessage();
+        }
 
         biblioteca.mostrarInformacionPrestamos();
     }
